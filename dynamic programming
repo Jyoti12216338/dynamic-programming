@@ -1,0 +1,27 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+int fib(int n,vector<int>& memo) {
+    if (memo[n] != 0) {
+        return memo[n];
+    }
+    if (n == 1 || n == 2) {
+        return 1;
+    }
+    
+    int result = fib(n - 1, memo) + fib(n - 2, memo);
+    memo[n] = result;  
+    return result;
+}
+
+int main() {
+    int input;
+    cout << "Enter the value of n: ";
+    cin >> input;
+
+    vector<int> memo(input + 1, 0);
+    int result = fib(input, memo);
+    cout << "fib(" << input << ") = " << result << endl;
+
+    return 0;
+}
